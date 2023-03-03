@@ -10,5 +10,5 @@ function FileInput() {
 		}
 	};
 
-	return (<input type="file" onChange={handleFileChange} />);
+	return (<input type="file" accept=".json" onChange={handleFileChange} />);
 }
