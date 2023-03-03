@@ -2,7 +2,7 @@ interface NodeProps {
 	jsonObj: JSON | null;
 }
 
-export const function Node(props: NodeProps) {
+export default function Node(props: NodeProps) {
 	const { jsonObj } = props;
 	if (jsonObj === null) {
 		return <div>NULL</div>;
