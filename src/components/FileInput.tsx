@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { useFileStore } from '../data/filestore'
 
 function FileInput() {
-	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) = > {
+	const setFile = useFileStore((state: any) => state.setFile);
+	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
-		setFile(file);
+		if (file) {
+			setFile(file);
+		}
 	};
 
 	return (<input type="file" onChange={handleFileChange} />);

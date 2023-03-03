@@ -1,6 +1,6 @@
 import create from 'zustand';
 
-export const useFileStore = create((set) => ({
+export const useFileStore = create((set: any) => ({
 	file: null,
-	setFile: (file) => set({ file }),
-})
+	setFile: (file: File) => set({ file }),
+}));
