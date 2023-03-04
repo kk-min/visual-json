@@ -21,7 +21,7 @@ export default function Node(props: NodeProps) {
 			if (typeof item.element === 'object') {
 				return <div>
 					<div className="Node">{item.key as string}</div>
-					<Node jsonObj={item.element} /></div>;
+					{Array.isArray(item.element) ? <div className="Node">{JSON.stringify(item.element)}</div> : <Node jsonObj={item.element} />}</div>;
 			} else {
 				return <div className="Node">{item.key + " : " + item.element as string}</div>;
 			}
