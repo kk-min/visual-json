@@ -1,0 +1,14 @@
+.Node {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid #abc;
+	background-color: #fff;
+	padding: 5px;
+}
+
+.Level {
+	display : flex;
+	justify-content: space-between;
+	align-items : center
+}

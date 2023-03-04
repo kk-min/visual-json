@@ -1,3 +1,5 @@
+import "./css/Node.css";
+
 interface NodeProps {
 	jsonObj: JSON | null;
 }
@@ -5,21 +7,23 @@ interface NodeProps {
 export default function Node(props: NodeProps) {
 	const { jsonObj } = props;
 	if (jsonObj === null) {
-		return <div>NULL</div>;
+		return <div className="Node">NULL</div>;
 	}
 	let level = [];
 	for (const key in jsonObj) {
 		if (jsonObj.hasOwnProperty(key)) {
 			let element = jsonObj[key as keyof JSON]!;
-			level.push(element);
+			level.push({ key, element });
 		}
 	}
-	return <div>{
-		level.map((element) => {
-			if (typeof element === 'object') {
-				return <Node jsonObj={element} />;
+	return <div className="Level">{
+		level.map((item) => {
+			if (typeof item.element === 'object') {
+				return <div>
+					<div className="Node">{item.key as string}</div>
+					<Node jsonObj={item.element} /></div>;
 			} else {
-				return <div>{element as string}</div>;
+				return <div className="Node">{item.key + " : " + item.element as string}</div>;
 			}
 		})
 	}</div>;
