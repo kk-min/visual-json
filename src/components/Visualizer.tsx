@@ -2,7 +2,7 @@ import { useFileStore } from '../data/filestore';
 import Node from './Node';
 
 export default function Visualizer() {
-	const json = useFileStore((state: any) => state.file);
+	const { json, fileName } = useFileStore((state: any) => state);
 	if (!json) return null;
-	return <Node jsonObj={json} />;
+	return <div><h1>{fileName}</h1> <Node jsonObj={json} /></div>
 }
