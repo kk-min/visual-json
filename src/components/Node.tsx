@@ -4,7 +4,6 @@ interface NodeProps {
 
 export default function Node(props: NodeProps) {
 	const { jsonObj } = props;
-	console.log(jsonObj)
 	if (jsonObj === null) {
 		return <div>NULL</div>;
 	}

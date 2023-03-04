@@ -8,7 +8,7 @@ export const useFileStore = create((set: any) => ({
 		fileReader.onload = (e: any) => {
 			const content = e.target.result;
 			const json = JSON.parse(content);
-			set({ json })
+			set({ file: json })
 		}
 	},
 }));
