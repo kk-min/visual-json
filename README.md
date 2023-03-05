@@ -37,10 +37,12 @@ The following data:
 					[
 						"nested_value_4",
 						"nested_value_5",
-						"nested_value_6"],
-						{
-							"nested_key_4": "nested_value_4",
-							"nested_key_5": "nested_value_5"}
+						"nested_value_6"
+					],
+					{
+						"nested_key_4": "nested_value_4",
+						"nested_key_5": "nested_value_5"
+					}
 				]
 			}
 		}
