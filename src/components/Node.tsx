@@ -17,7 +17,7 @@ export default function Node(props: NodeProps) {
 		}
 	}
 	return <div className="Level">{
-		level.map((item, i) => {
+		level.map((item) => {
 			if (typeof item.element === 'object') {
 				return <div >
 					<div className="Node">{Array.isArray(item.element) ? "[ " : ""}{`"${item.key}"`}{Array.isArray(item.element) ? " ]" : ""}</div>
