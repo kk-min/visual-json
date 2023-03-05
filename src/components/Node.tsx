@@ -17,14 +17,14 @@ export default function Node(props: NodeProps) {
 		}
 	}
 	return <div className="Level">{
-		level.map((item) => {
+		level.map((item, i) => {
 			if (typeof item.element === 'object') {
-				return <div key={item.key}>
+				return <div >
 					<div className="Node">{Array.isArray(item.element) ? "[ " : ""}{item.key as string}{Array.isArray(item.element) ? " ]" : ""}</div>
-					{Array.isArray(item.element) ? <div className="Level">{(item.element as Array<any>).map((subitem) => (typeof subitem === 'object') ? <div key={subitem.uniqueId}><div className="Node">{"_"}</div><Node jsonObj={subitem} /></div> : <div key={subitem.uniqueId} className="Node">{subitem}</div>)}</div> : <Node jsonObj={item.element} />}
+					{Array.isArray(item.element) ? <div className="Level">{(item.element as Array<any>).map((subitem) => (typeof subitem === 'object') ? <div ><div className="Node">{"_"}</div><Node jsonObj={subitem} /></div> : <div className="Node">{subitem}</div>)}</div> : <Node jsonObj={item.element} />}
 				</div>;
 			} else {
-				return <div key={item.key} className="Node">{item.key + " : " + item.element as string}</div>;
+				return <div className="Node">{item.key + " : " + item.element as string}</div>;
 			}
 		})
 	}</div >;
