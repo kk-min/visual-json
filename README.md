@@ -27,15 +27,15 @@ The following data:
 			"deeper_key": "deeper_value",
 			"another_key": "another_value"
 		}],
-		"nested_object": {
-			"nested_key": "nested_value",
-			"nested_key_2": {
-				"nested_key_2_1": "nested_value_2_1",
-				"nested_key_2_2": "nested_value_2_2",
-				"boolean_key" : true
-			}
-		}, 
-		"null_key" : null
+	"nested_object": {
+		"nested_key": "nested_value",
+		"nested_key_2": {
+			"nested_key_2_1": "nested_value_2_1",
+			"nested_key_2_2": "nested_value_2_2",
+			"boolean_key" : true
+		}
+	}, 
+	"null_key" : null
 }
 
 ```
