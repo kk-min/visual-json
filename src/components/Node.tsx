@@ -19,14 +19,15 @@ export default function Node(props: NodeProps) {
 	return <div className="Level">{
 		level.map((item) => {
 			if (typeof item.element === 'object') {
-				return <div>
-					<div className="Node">{item.key as string}</div>
-					{Array.isArray(item.element) ? <div className="Node">{JSON.stringify(item.element)}</div> : <Node jsonObj={item.element} />}</div>;
+				return <div key={item.key}>
+					<div className="Node">{Array.isArray(item.element) ? "[ " : ""}{item.key as string}{Array.isArray(item.element) ? " ]" : ""}</div>
+					{Array.isArray(item.element) ? <div className="Level">{(item.element as Array<any>).map((subitem) => (typeof subitem === 'object') ? <div key={subitem.uniqueId}><div className="Node">{"JSON OBJECT"}</div><Node jsonObj={subitem} /></div> : <div key={subitem.uniqueId} className="Node">{subitem}</div>)}</div> : <Node jsonObj={item.element} />}
+				</div>;
 			} else {
-				return <div className="Node">{item.key + " : " + item.element as string}</div>;
+				return <div key={item.key} className="Node">{item.key + " : " + item.element as string}</div>;
 			}
 		})
-	}</div>;
+	}</div >;
 
 
 }
