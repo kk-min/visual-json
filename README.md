@@ -5,6 +5,7 @@ The JSON data format is a great way to store hierarchical and nested data, but i
 - Key value pairs are displayed in a `key : value` format in a node
 - Nested objects are represented by a node with its key value, with subnodes that represent its contents
 - JSON arrays are distinguished via the `[ "key"  ]` format in a node, with its elements represented as its subnodes
+- Nested objects without a key (e.g. an object in a list) are displayed under a root node with a key of "_"
 - String values are distinguished via quotations ("") while numbers and booleans have no quotations. Null values are represented as NULL.
 
 # Example
