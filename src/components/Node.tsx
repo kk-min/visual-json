@@ -21,7 +21,7 @@ export default function Node(props: NodeProps) {
 			if (typeof item.element === 'object') {
 				return <div >
 					<div className="Node">{Array.isArray(item.element) ? "[ " : ""}{`"${item.key}"`}{Array.isArray(item.element) ? " ]" : ""}</div>
-					{Array.isArray(item.element) ? <div className="Level">{(item.element as Array<any>).map((subitem) => (typeof subitem === 'object') ? <div ><div className="Node">{Array.isArray(subitem) ? "[ " : ""}{"_"}{Array.isArray(subitem) ? " ]" : ""}</div><Node jsonObj={subitem} /></div> : <div className="Node">{typeof subitem === "string" ? `"${subitem}"` : subitem}</div>)}</div> : <Node jsonObj={item.element} />}
+					{Array.isArray(item.element) ? <div className="Level">{(item.element as Array<any>).map((subitem) => (typeof subitem === 'object') ? <div ><div className="Node">{Array.isArray(subitem) ? "[ " : "{ "}{"_"}{Array.isArray(subitem) ? " ]" : " }"}</div><Node jsonObj={subitem} /></div> : <div className="Node">{typeof subitem === "string" ? `"${subitem}"` : subitem}</div>)}</div> : <Node jsonObj={item.element} />}
 				</div>;
 			} else {
 				const element = typeof item.element === "string" ? `"${item.element}"` : item.element;
