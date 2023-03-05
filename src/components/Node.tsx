@@ -20,11 +20,12 @@ export default function Node(props: NodeProps) {
 		level.map((item, i) => {
 			if (typeof item.element === 'object') {
 				return <div >
-					<div className="Node">{Array.isArray(item.element) ? "[ " : ""}{item.key as string}{Array.isArray(item.element) ? " ]" : ""}</div>
-					{Array.isArray(item.element) ? <div className="Level">{(item.element as Array<any>).map((subitem) => (typeof subitem === 'object') ? <div ><div className="Node">{"_"}</div><Node jsonObj={subitem} /></div> : <div className="Node">{subitem}</div>)}</div> : <Node jsonObj={item.element} />}
+					<div className="Node">{Array.isArray(item.element) ? "[ " : ""}{`"${item.key}"`}{Array.isArray(item.element) ? " ]" : ""}</div>
+					{Array.isArray(item.element) ? <div className="Level">{(item.element as Array<any>).map((subitem) => (typeof subitem === 'object') ? <div ><div className="Node">{"_"}</div><Node jsonObj={subitem} /></div> : <div className="Node">{typeof subitem === "string" ? `"${subitem}"` : subitem}</div>)}</div> : <Node jsonObj={item.element} />}
 				</div>;
 			} else {
-				return <div className="Node">{item.key + " : " + item.element as string}</div>;
+				const element = typeof item.element === "string" ? `"${item.element}"` : item.element;
+				return <div className="Node">{`"${item.key}"` + " : " + element}</div>;
 			}
 		})
 	}</div >;
