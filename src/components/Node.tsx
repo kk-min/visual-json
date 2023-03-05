@@ -19,7 +19,7 @@ export default function Node(props: NodeProps) {
 				</div>;
 			} else {
 				const displayValue = typeof value === "string" ? `"${value}"` : value;
-				return <div className="Node">{`"${key}"` + " : " + displayValue}</div>;
+				return <div className="Node">{`"${key} : "` + displayValue}</div>;
 			}
 		})
 	}</div >;
