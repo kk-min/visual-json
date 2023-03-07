@@ -5,12 +5,14 @@ interface NodeProps {
 	jsonObj: JSON | null;
 	expand: boolean;
 	keyless: boolean;
+	root: boolean;
 }
 
 const defaultProps: NodeProps = {
 	jsonObj: null,
 	expand: true,
 	keyless: false,
+	root: false,
 }
 
 Node.defaultProps = defaultProps;
@@ -26,6 +28,14 @@ export default function Node(props: NodeProps) {
 		return <div className="Node">NULL</div>;
 	}
 
+	if (props.root) {
+		return <div>
+			<div className="Node" onClick={onNodeClick} >{`_`}</div>
+			{expandState ? <div className="Level">
+				<Node jsonObj={jsonObj} />
+			</div> : null}
+		</div>
+	}
 	if (props.keyless) {
 		return <div>
 			<div className="Node" onClick={onNodeClick}>{Array.isArray(jsonObj) ? `[ ` : `{ `}{`_`}{Array.isArray(jsonObj) ? ` ]` : ` }`}</div>
