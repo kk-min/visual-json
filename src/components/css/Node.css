@@ -4,7 +4,13 @@
 	align-items: center;
 	border: 2px solid #abc;
 	background-color: #fff;
-	padding: 5px;
+	padding: 10px;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.Leaf {
+ 	cursor: normal;
 }
 
 .Level {
