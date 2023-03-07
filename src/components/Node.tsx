@@ -30,7 +30,7 @@ export default function Node(props: NodeProps) {
 
 	if (props.root) {
 		return <div>
-			<div className="Node" onClick={onNodeClick} ><div className="Arrow" /><div className="NodeText">{`_`}</div><div className="Arrow" /></div>
+			<div className="Node" onClick={onNodeClick} ><div className={"Arrow" + (expandState ? "Open" : "")}>▶</div><div className="NodeText">{`_`}</div><div className="Arrow" /></div>
 			{expandState ? <div className="Level">
 				<Node jsonObj={jsonObj} />
 			</div> : null}
@@ -43,7 +43,7 @@ export default function Node(props: NodeProps) {
 				{!expandState ? null : Object.entries(jsonObj).map(([key, value]) => {
 					if (typeof value === 'object') {
 						return <div>
-							<div className="Node" onClick={onNodeClick}>{Array.isArray(value) ? "[ " : "{ "}{`"${key}"`}{Array.isArray(value) ? " ]" : " }"}</div>
+							<div className="Node" onClick={onNodeClick}><div className={"Arrow" + (expandState ? "Open" : "")}>▶</div><div className="NodeText">{Array.isArray(value) ? "[ " : "{ "}{`"${key}"`}{Array.isArray(value) ? " ]" : " }"}</div><div className="Arrow" /></div>
 							{!expandState ? null : Array.isArray(value) ? <div className="Level">{(value as Array<any>).map((subitem) => (typeof subitem === 'object') ? <Node jsonObj={subitem} keyless={true} /> : <div className="Node Leaf">{typeof subitem === "string" ? `"${subitem}"` : subitem}</div>)}</div> : <Node jsonObj={value} />}
 						</div>
 					} else {
@@ -60,7 +60,7 @@ export default function Node(props: NodeProps) {
 		level.map(([key, value]) => {
 			if (typeof value === 'object') {
 				return <div >
-					<div className="Node" onClick={onNodeClick}>{Array.isArray(value) ? "[ " : ""}{`"${key}"`}{Array.isArray(value) ? " ]" : ""}</div>
+					<div className="Node" onClick={onNodeClick}><div className={"Arrow" + (expandState ? "Open" : "")}>▶</div><div className="NodeText">{Array.isArray(value) ? "[ " : ""}{`"${key}"`}{Array.isArray(value) ? " ]" : ""}</div><div className="Arrow" /></div>
 					{!expandState ? null : Array.isArray(value) ? <div className="Level">{(value as Array<any>).map((subitem) => (typeof subitem === 'object') ? <Node jsonObj={subitem} keyless={true} /> : <div className="Node Leaf">{typeof subitem === "string" ? `"${subitem}"` : subitem}</div>)}</div> : <Node jsonObj={value} />}
 				</div>;
 			} else {
