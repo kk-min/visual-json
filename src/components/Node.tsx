@@ -30,7 +30,7 @@ export default function Node(props: NodeProps) {
 
 	if (props.root) {
 		return <div>
-			<div className="Node" onClick={onNodeClick} >{`_`}</div>
+			<div className="Node" onClick={onNodeClick} ><div className="Arrow" /><div className="NodeText">{`_`}</div><div className="Arrow" /></div>
 			{expandState ? <div className="Level">
 				<Node jsonObj={jsonObj} />
 			</div> : null}
