@@ -44,11 +44,11 @@ export default function Node(props: NodeProps) {
 					if (typeof value === 'object') {
 						return <div>
 							<div className="Node" onClick={onNodeClick}>{Array.isArray(value) ? "[ " : "{ "}{`"${key}"`}{Array.isArray(value) ? " ]" : " }"}</div>
-							{!expandState ? null : Array.isArray(value) ? <div className="Level">{(value as Array<any>).map((subitem) => (typeof subitem === 'object') ? <Node jsonObj={subitem} keyless={true} /> : <div className="Node Leaf">{typeof subitem === "string" ? `${subitem}` : subitem}</div>)}</div> : <Node jsonObj={value} />}
+							{!expandState ? null : Array.isArray(value) ? <div className="Level">{(value as Array<any>).map((subitem) => (typeof subitem === 'object') ? <Node jsonObj={subitem} keyless={true} /> : <div className="Node Leaf">{typeof subitem === "string" ? `"${subitem}"` : subitem}</div>)}</div> : <Node jsonObj={value} />}
 						</div>
 					} else {
 						const displayValue = typeof value === "string" ? `"${value}"` : value;
-						return <div className="Node Leaf">{`"${key}" : ` + displayValue}</div>
+						return <div className="Node Leaf">{(Array.isArray(jsonObj) ? "" : `"${key}" : `) + displayValue}</div>
 					}
 				})}
 			</div>
