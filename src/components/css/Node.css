@@ -1,6 +1,21 @@
+.Arrow {
+	transition: transform 0.5s ease-in-out;
+	transform: rotate(0deg);
+}
+
+.ArrowOpen {
+	transition: transform 0.5s ease-in-out;
+	transform: rotate(90deg);
+}
+
+.NodeText {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
 .Node {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	border: 2px solid #abc;
 	background-color: #fff;

@@ -38,7 +38,7 @@ export default function Node(props: NodeProps) {
 	}
 	if (props.keyless) {
 		return <div>
-			<div className="Node" onClick={onNodeClick}>{Array.isArray(jsonObj) ? `[ ` : `{ `}{`_`}{Array.isArray(jsonObj) ? ` ]` : ` }`}</div>
+			<div className="Node" onClick={onNodeClick}><div className={"Arrow" + (expandState ? "Open" : "")}>▶</div><div className="NodeText">{Array.isArray(jsonObj) ? `[ ` : `{ `}{`_`}{Array.isArray(jsonObj) ? ` ]` : ` }`}</div><div className="Arrow" /></div>
 			<div className="Level">
 				{!expandState ? null : Object.entries(jsonObj).map(([key, value]) => {
 					if (typeof value === 'object') {
@@ -52,7 +52,7 @@ export default function Node(props: NodeProps) {
 					}
 				})}
 			</div>
-		</div>
+		</div >
 	}
 
 	let level = Object.entries(jsonObj)
