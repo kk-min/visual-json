@@ -26,6 +26,14 @@
 }
 
 .Leaf {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: 2px solid #abc;
+	background-color: #fff;
+	padding: 10px;
+	white-space: nowrap;
+	width: inherit;
  	cursor: normal;
 }
 

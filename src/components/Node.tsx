@@ -25,7 +25,7 @@ export default function Node(props: NodeProps) {
 
 	if ((jsonObj === null) || (typeof jsonObj !== "object")) {
 		const displayValue = typeof jsonObj === "string" ? `"${jsonObj}"` : jsonObj;
-		return <div className="Node Leaf">{`"${keyText}" : ` + displayValue}</div>;
+		return <div className="Leaf">{`"${keyText}" : ` + displayValue}</div>;
 	}
 
 	let level = Object.entries(jsonObj)
@@ -43,7 +43,7 @@ export default function Node(props: NodeProps) {
 				}
 				else {
 					const displayValue = typeof value === "string" ? `"${value}"` : value;
-					return <div className="Node Leaf">{(Array.isArray(jsonObj) ? "" : (`"${key}" : `)) + displayValue}</div>;
+					return <div className="Leaf">{(Array.isArray(jsonObj) ? "" : (`"${key}" : `)) + displayValue}</div>;
 				}
 			})
 		}</div > : null}</div>
