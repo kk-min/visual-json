@@ -4,71 +4,47 @@ import { useState } from "react";
 interface NodeProps {
 	jsonObj: JSON | null;
 	expand: boolean;
-	keyless: boolean;
-	root: boolean;
+	keyText: string | null;
 }
 
 const defaultProps: NodeProps = {
 	jsonObj: null,
 	expand: true,
-	keyless: false,
-	root: false,
+	keyText: "",
 }
 
 Node.defaultProps = defaultProps;
 
 export default function Node(props: NodeProps) {
-	const { jsonObj } = props;
+	const { jsonObj, keyText } = props;
 	const [expandState, setExpandState] = useState(props.expand);
 
 	const onNodeClick = () => {
 		setExpandState((prev: boolean) => !prev)
 	}
-	if (jsonObj === null) {
-		return <div className="Node">NULL</div>;
-	}
 
-	if (props.root) {
-		return <div>
-			<div className="Node" onClick={onNodeClick} ><div className={"Arrow" + (expandState ? "Open" : "")}>▶</div><div className="NodeText">{`_`}</div><div className="Arrow" /></div>
-			{expandState ? <div className="Level">
-				<Node jsonObj={jsonObj} />
-			</div> : null}
-		</div>
-	}
-	if (props.keyless) {
-		return <div>
-			<div className="Node" onClick={onNodeClick}><div className={"Arrow" + (expandState ? "Open" : "")}>▶</div><div className="NodeText">{Array.isArray(jsonObj) ? `[ ` : `{ `}{`_`}{Array.isArray(jsonObj) ? ` ]` : ` }`}</div><div className="Arrow" /></div>
-			<div className="Level">
-				{!expandState ? null : Object.entries(jsonObj).map(([key, value]) => {
-					if (typeof value === 'object') {
-						return <div>
-							<div className="Node" onClick={onNodeClick}><div className={"Arrow" + (expandState ? "Open" : "")}>▶</div><div className="NodeText">{Array.isArray(value) ? "[ " : "{ "}{`"${key}"`}{Array.isArray(value) ? " ]" : " }"}</div><div className="Arrow" /></div>
-							{!expandState ? null : Array.isArray(value) ? <div className="Level">{(value as Array<any>).map((subitem) => (typeof subitem === 'object') ? <Node jsonObj={subitem} keyless={true} /> : <div className="Node Leaf">{typeof subitem === "string" ? `"${subitem}"` : subitem}</div>)}</div> : <Node jsonObj={value} />}
-						</div>
-					} else {
-						const displayValue = typeof value === "string" ? `"${value}"` : value;
-						return <div className="Node Leaf">{(Array.isArray(jsonObj) ? "" : `"${key}" : `) + displayValue}</div>
-					}
-				})}
-			</div>
-		</div >
+	if ((jsonObj === null) || (typeof jsonObj !== "object")) {
+		const displayValue = typeof jsonObj === "string" ? `"${jsonObj}"` : jsonObj;
+		return <div className="Node Leaf">{`"${keyText}" : ` + displayValue}</div>;
 	}
 
 	let level = Object.entries(jsonObj)
-	return <div className="Level">{
-		level.map(([key, value]) => {
-			if (typeof value === 'object') {
-				return <div >
-					<div className="Node" onClick={onNodeClick}><div className={"Arrow" + (expandState ? "Open" : "")}>▶</div><div className="NodeText">{Array.isArray(value) ? "[ " : ""}{`"${key}"`}{Array.isArray(value) ? " ]" : ""}</div><div className="Arrow" /></div>
-					{!expandState ? null : Array.isArray(value) ? <div className="Level">{(value as Array<any>).map((subitem) => (typeof subitem === 'object') ? <Node jsonObj={subitem} keyless={true} /> : <div className="Node Leaf">{typeof subitem === "string" ? `"${subitem}"` : subitem}</div>)}</div> : <Node jsonObj={value} />}
-				</div>;
-			} else {
-				const displayValue = typeof value === "string" ? `"${value}"` : value;
-				return <div className="Node Leaf">{`"${key}" : ` + displayValue}</div>;
-			}
-		})
-	}</div >;
-
-
+	return <div>
+		<div className="Node" onClick={onNodeClick}>
+			<div className={"Arrow" + (expandState ? "Open" : "")}>▶</div><div className="NodeText">{`${keyText}`}</div><div className="Arrow" />
+		</div>
+		{expandState ? <div className="Level">{
+			level.map(([key, value]) => {
+				if ((typeof value === "object") && (value !== null)) {
+					return <div>
+						<div className="Level"><Node keyText={(Array.isArray(value) ? "[ " : "{ ") + (Array.isArray(jsonObj) ? "_" : key) + (Array.isArray(value) ? " ]" : " }")} jsonObj={value} />
+						</div>
+					</div>
+				}
+				else {
+					const displayValue = typeof value === "string" ? `"${value}"` : value;
+					return <div className="Node Leaf">{(Array.isArray(jsonObj) ? "" : (`"${key}" : `)) + displayValue}</div>;
+				}
+			})
+		}</div > : null}</div>
 }
