@@ -3,14 +3,22 @@ _Copyright © 2023 Min Kabar Kyaw_
 
 The JSON data format is a great way to store hierarchical and nested data, but it becomes difficult to read and analyze when the nested layers start to increase. Visual JSON aims to display complex JSON files in a top-down tree approach for easier and quicker analysis of a JSON object's structure.
 
-# Features
+## Requirements
+
+- [Node.js](https://nodejs.org/en/) installed
+
+## Usage
+
+Go to project directory and run `npm start`
+
+## Features
 - Key value pairs are displayed in a `key : value` format in a node
 - Nested objects are represented by a node with its key value, with subnodes that represent its contents
 - JSON arrays are distinguished via the `[ "key" ]` format in a node, with its elements represented as its subnodes
 - Nested objects and lists without keys (e.g. an object/list in a list) are displayed and differentiated under a root node with keys of "{ _ }" and "[ _ ]"
 - String values are distinguished via quotations (" ") while number and boolean values have no quotations. Null values are represented as NULL.
 
-# Example
+## Example
 
 The following data:
 ```JSON
