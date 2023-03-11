@@ -9,7 +9,9 @@ The JSON data format is a great way to store hierarchical and nested data, but i
 
 ## Usage
 
-Go to project directory and run `npm start`
+1. Change directory to project root directory in CLI
+2. Run `npm install` to install dependencies
+3. Run `npm start`
 
 ## Features
 - Key value pairs are displayed in a `key : value` format in a node
