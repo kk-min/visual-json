@@ -1,5 +1,5 @@
 # Visual JSON
-_Copyright © 2023 Min Kabar Kyaw_  
+_Copyright © 2023 kk-min_  
 
 The JSON data format is a great way to store hierarchical and nested data, but it becomes difficult to read and analyze when the nested layers start to increase. Visual JSON aims to display complex JSON files in a top-down tree approach for easier and quicker analysis of a JSON object's structure.
 
